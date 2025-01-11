@@ -4,6 +4,7 @@ import { Main } from "./Main";
 import { Landing } from "./Landing";
 import { NotFound } from "./not-found";
 import GroupList from "./groupList/GroupList";
+import GroupDetails from "./GroupDetails/GroupDetails";
 
 const routes = [
   { path: "/", Page: Landing },
@@ -11,6 +12,7 @@ const routes = [
   { path: "/home", Page: Home },
   { path: "/*", Page: NotFound },
   { path: "/group-list", Page: GroupList },
+  { path: "/group-details/:groupId", Page: GroupDetails },
 ];
 
 function Routing() {

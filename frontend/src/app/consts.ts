@@ -1,11 +1,11 @@
-import { HexString } from '@gear-js/api';
+import { HexString } from "@gear-js/api";
 
 interface ContractSails {
-  programId: HexString,
-  idl: string
+  programId: HexString;
+  idl: string;
 }
 
-export const ACCOUNT_ID_LOCAL_STORAGE_KEY = 'account';
+export const ACCOUNT_ID_LOCAL_STORAGE_KEY = "account";
 
 export const ADDRESS = {
   NODE: import.meta.env.VITE_NODE_ADDRESS,
@@ -14,22 +14,22 @@ export const ADDRESS = {
 };
 
 export const ROUTES = {
-  HOME: '/',
-  MAIN: '/Main',
-  EXAMPLES: '/examples',
-  NOTFOUND: '*',
+  HOME: "/",
+  EXAMPLES: "/examples",
+  NOTFOUND: "*",
 };
 
 // To use the example code, enter the details of the account that will pay the vouchers, etc. (name and mnemonic)
 // Here, you have an example account that contains tokens, in your dApp, you need to put a sponsor name
 // and a sponsor mnemonic
-export const sponsorName = 'Alice';
-export const sponsorMnemonic = 'bottom drive obey lake curtain smoke basket hold race lonely fit walk';
+export const sponsorName = "Alice";
+export const sponsorMnemonic =
+  "bottom drive obey lake curtain smoke basket hold race lonely fit walk";
 
 export const CONTRACT_DATA: ContractSails = {
-  programId: '0xb3809b8c18422c3a8fc6e3452b11234dea7cddbfd073c427f42e1ed08408cdb7',
-  idl: `
-    type ExpenseDto = struct {
+  programId:
+    "0x808ebbaf76d0d1af1b41eeb4f83f255fc716f44994637d0f77ec99f567d4f5ae",
+  idl: `type ExpenseDto = struct {
   description: str,
   amount: u128,
   currency: str,
@@ -43,7 +43,6 @@ type Events = enum {
 };
 
 type IoState = struct {
-  admins: vec actor_id,
   groups: vec Group,
 };
 
@@ -70,9 +69,10 @@ service Service {
   CreateGroup : () -> Events;
   JoinGroup : (group_id: u32) -> Events;
   query Query : () -> IoState;
-  query QueryAdmins : () -> vec actor_id;
+  query QueryActorGroups : () -> vec Group;
   query QueryExpenses : (group_id: u32) -> opt vec Expense;
+  query QueryGroup : (groupId: u32) -> Group;
   query QueryGroupMembers : (group_id: u32) -> opt vec actor_id;
 };
-  `
+`,
 };

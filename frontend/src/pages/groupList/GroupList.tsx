@@ -69,6 +69,9 @@ function GroupsViewer() {
               borderRadius="md"
               width="100%"
               cursor={"pointer"}
+              onClick={() => {
+                window.location.href = `/group-details/${group.id}`;
+              }}
             >
               <Text fontSize="lg" fontWeight="bold" color="white">
                 Group ID: {group.id}

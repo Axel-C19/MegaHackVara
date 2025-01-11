@@ -9,17 +9,20 @@ import {
   Divider,
   Button,
   Center,
+  useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { useAccount } from "@gear-js/react-hooks";
 import { useSailsCalls } from "@/app/hooks";
+import GroupDetailsNewExpenseModal from "./GroupDetailsNewExpenseModal";
 
 function GroupDetails() {
   const { groupId } = useParams();
   const [loading, setLoading] = useState(true);
-  const [group, setGroup] = useState(null);
+  const [group, setGroup] = useState<any>(null);
   const { account } = useAccount();
   const sails = useSailsCalls();
+  const GroupDetailsNewExpenseDisclosure = useDisclosure();
 
   const fetchGroupsDetails = async () => {
     if (!sails || !account) {
@@ -80,7 +83,12 @@ function GroupDetails() {
             <Button size="sm" colorScheme="orange" shadow={"lg"}>
               Settle Up
             </Button>
-            <Button size="sm" colorScheme="red" shadow="lg">
+            <Button
+              size="sm"
+              colorScheme="red"
+              shadow="lg"
+              onClick={GroupDetailsNewExpenseDisclosure.onOpen}
+            >
               Add Expense
             </Button>
             <Button size="sm" shadow="lg">
@@ -92,24 +100,32 @@ function GroupDetails() {
               <Text>No Expenses Yet</Text>
             )}
             {group &&
-              group.expenses.map((expense) => {
+              group.expenses.map((expense: any) => {
                 return <ExpenseRow expense={expense} />;
               })}
           </VStack>
         </VStack>
+        <GroupDetailsNewExpenseModal
+          groupId={groupId}
+          isOpen={GroupDetailsNewExpenseDisclosure.isOpen}
+          onClose={() => {
+            GroupDetailsNewExpenseDisclosure.onClose();
+            fetchGroupsDetails();
+          }}
+        />
       </Box>
     </>
   );
 }
 
-const ExpenseRow = ({ expense }) => {
+const ExpenseRow = ({ expense }: any) => {
   return (
     <HStack
       w="100%"
       p={4}
       bg="gray.50"
       borderRadius="md"
-      boxShadow="lg"
+      boxShadow="xs"
       alignItems={"center"}
     >
       <VStack alignItems={"center"} spacing={0}>

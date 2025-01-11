@@ -83,6 +83,8 @@ function GroupDetails() {
     );
   }
 
+  console.log(totalOwedToEachUser);
+
   return (
     <>
       <Box bg="#F7A278" w="100%" h="130px"></Box>
@@ -96,12 +98,17 @@ function GroupDetails() {
               Group Id: {group.id}
             </Text>
             <HStack>
-              <Text fontSize={"17px"} color="orange.300" as="b">
+              {totalOwed[1] > totalOwed[0] ? (
+                <Text>you owe {totalOwed[1]}</Text>
+              ) : (
+                <Text>you are owed {totalOwed[0]}</Text>
+              )}
+              {/* <Text fontSize={"17px"} color="orange.300" as="b">
                 You owe ${totalOwed[1].toFixed(2)} overall
               </Text>
               <Text fontSize={"17px"} color="green.400" as="b">
                 You are owed overall ${totalOwed[0].toFixed(2)}
-              </Text>
+              </Text> */}
             </HStack>
           </VStack>
           <VStack spacing={0} justify={"center"} alignItems={"start"}>

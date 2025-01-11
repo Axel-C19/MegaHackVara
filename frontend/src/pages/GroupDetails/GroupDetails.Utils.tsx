@@ -55,15 +55,17 @@ export const getTotalOwedFromGroupToEachUser = (group: any, wallet: string) => {
     }
   });
 
-  group.payments.forEach((payment: any) => {
-    if (payment.from === wallet) {
-      owedToEachUser[payment.to] =
-        (owedToEachUser[payment.to] || 0) - payment.amount;
-    } else if (payment.to === wallet) {
-      owedToEachUser[payment.from] =
-        (owedToEachUser[payment.from] || 0) + payment.amount;
-    }
-  });
+  console.log(owedToEachUser);
+
+  //   group.payments.forEach((payment: any) => {
+  //     if (payment.from === wallet) {
+  //       owedToEachUser[payment.to] =
+  //         (owedToEachUser[payment.to] || 0) - payment.amount;
+  //     } else if (payment.to === wallet) {
+  //       owedToEachUser[payment.from] =
+  //         (owedToEachUser[payment.from] || 0) + payment.amount;
+  //     }
+  //   });
 
   return owedToEachUser;
 };

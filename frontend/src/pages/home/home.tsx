@@ -19,6 +19,7 @@ function Home () {
 
     return (
         <div>
+            <h1> En produccion... // Coming Soon...</h1>
         </div>
     );
 }

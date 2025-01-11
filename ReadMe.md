@@ -91,19 +91,19 @@ El desarrollo de **ChainSplit** ha sido posible gracias al talento de nuestro eq
    ![Pagina Landing](https://i.imgur.com/CHN5z39.png)
 
 2. **Pantalla principal:** Muestra las opciones para crear o unirse a un grupo.
-   ![Pantalla principal](https://imgur.com/2mjXPgS)
+   ![Pantalla principal](https://i.imgur.com/2mjXPgS.png)
 
 3. **Detalles del grupo:** Lista los gastos y balances actuales.
-   ![Detalles del grupo]([https://via.placeholder.com/800x400](https://imgur.com/ATKUE87))
+   ![Detalles del grupo](https://i.imgur.com/ATKUE87.png)
 
 4. **Formulario de nuevo gasto:** Permite agregar y dividir gastos.
-   ![Formulario de nuevo gasto]([https://via.placeholder.com/800x400](https://imgur.com/k2mzjfD))
+   ![Formulario de nuevo gasto](https://i.imgur.com/k2mzjfD.png)
 
 5. **Formulario de nuevo pago:** Permite pagar gastos.
-   ![Formulario de nuevo pago](https://imgur.com/L1YdwUi)
+   ![Formulario de nuevo pago](https://i.imgur.com/L1YdwUi.png)
 
 6. **Formulario para unirte a un grupo:** Permite poner el ID de un grupo y unirte al mismo.
-   ![Formulario para unirte a un grupo](https://imgur.com/abuLeq9)
+   ![Formulario para unirte a un grupo](https://i.imgur.com/abuLeq9.png)
    
 ---
 

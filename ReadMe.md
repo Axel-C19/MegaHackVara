@@ -88,7 +88,7 @@ El desarrollo de **ChainSplit** ha sido posible gracias al talento de nuestro eq
 ### Capturas de Pantalla
 
 1. **Landing:** Muestra la pantalla incial.
-   ![Pagina Landing](https://imgur.com/CHN5z39)
+   ![Pagina Landing](https://i.imgur.com/CHN5z39.png)
 
 2. **Pantalla principal:** Muestra las opciones para crear o unirse a un grupo.
    ![Pantalla principal](https://imgur.com/2mjXPgS)

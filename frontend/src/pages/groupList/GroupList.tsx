@@ -142,7 +142,10 @@ function GroupsViewer() {
       </VStack>
       <GroupListJoinGroupModal
         isOpen={GroupListJoinGroupModalDisclosure.isOpen}
-        onClose={GroupListJoinGroupModalDisclosure.onClose}
+        onClose={() => {
+          fetchGroups();
+          GroupListJoinGroupModalDisclosure.onClose();
+        }}
       />
     </Box>
   );

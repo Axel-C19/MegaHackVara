@@ -15,6 +15,7 @@ export const ADDRESS = {
 
 export const ROUTES = {
   HOME: "/",
+  MAIN: "/Main",
   EXAMPLES: "/examples",
   NOTFOUND: "*",
 };

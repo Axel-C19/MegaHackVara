@@ -6,7 +6,11 @@ import { useEnableWeb3 } from "./app/hooks";
 import { Routing } from "./pages";
 import { useInitSails } from "./app/hooks";
 import { CONTRACT_DATA, sponsorName, sponsorMnemonic } from "./app/consts";
+import { Sidebar } from "@/components/layout";
 import "@gear-js/vara-ui/dist/style.css";
+import { useLocation } from "react-router-dom"; // Import useLocation
+import './app.scss'; // Ajusta la ruta al archivo SCSS
+
 
 function Component() {
   const { isApiReady } = useApi();
@@ -14,26 +18,31 @@ function Component() {
   const { web3IsEnable } = useEnableWeb3();
   const isAppReady = isApiReady && isAccountReady && web3IsEnable;
 
-  // Put your contract id and idl
+  // Initialize Sails
   useInitSails({
     network: 'wss://testnet.vara.network',
     contractId: CONTRACT_DATA.programId,
     idl: CONTRACT_DATA.idl,
-    // You need to put name and mnemonic sponsor if you 
-    // will use vouchers feature (vouchers are used for gasless,
-    // and signless accounts)
     vouchersSigner: {
       sponsorName,
-      sponsorMnemonic
-    }
+      sponsorMnemonic,
+    },
   });
 
-  // App with context
+  // Get current location
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
+
   return (
-    <>
+    <div className="app-container">
       <Header isAccountVisible={isAccountReady} />
-      {isAppReady ? <Routing /> : <ApiLoader />}
-    </>
+      <div className="app-layout">
+        {!isHomePage && <Sidebar />} {/* Sidebar siempre visible si no es "/" */}
+        <div className="main-content">
+          {isAppReady ? <Routing /> : <ApiLoader />}
+        </div>
+      </div>
+    </div>
   );
 }
 

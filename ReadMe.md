@@ -1,7 +1,5 @@
 # ChainSplit
 
-![ChainSplit Logo](https://via.placeholder.com/600x200?text=ChainSplit+Logo)
-
 ## 🌐 Descripción del Proyecto
 
 **ChainSplit** es una innovadora aplicación descentralizada (dApp) diseñada para simplificar la división de gastos entre grupos de personas. Imagina un viaje, una estadía, una comida en un restaurante o cualquier situación donde se compartan gastos — ChainSplit se asegura de que todo sea justo y transparente, eliminando molestias o malentendidos.

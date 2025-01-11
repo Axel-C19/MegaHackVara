@@ -66,11 +66,15 @@ export function Sidebar() {
         <div className="groups-list">
           {groups.length > 0 ? (
             groups.map((group, index) => (
-              <div key={index} className="sidebar-item group-item" onClick={() => {
-                window.location.href = `/group-details/${group.id}`;
-              }}>
+              <div
+                key={index}
+                className="sidebar-item group-item"
+                onClick={() => {
+                  window.location.href = `/group-details/${group.id}`;
+                }}
+              >
                 <FaUserFriends className="icon" />
-                <span>{group.id}</span>
+                <span>{group.name}</span>
               </div>
             ))
           ) : (

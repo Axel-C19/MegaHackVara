@@ -108,7 +108,7 @@ function GroupsViewer() {
                 }}
               >
                 <Text fontSize="lg" fontWeight="bold" color="white">
-                  Group ID: {group.id}
+                  {group.name}
                 </Text>
                 <Text color="white">Members: {group.members.join(", ")}</Text>
                 <Text color="white">Expenses: {group.expenses.length}</Text>

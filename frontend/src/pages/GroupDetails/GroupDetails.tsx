@@ -66,7 +66,7 @@ function GroupDetails() {
       <Box padding={"20px"}>
         <VStack justify={"start"} alignItems={"start"}>
           <Text as="b" fontSize="60px">
-            Group Name
+            {group.name}
           </Text>
           <HStack>
             <Text fontSize={"17px"} color="orange" as="b">

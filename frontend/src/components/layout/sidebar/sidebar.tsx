@@ -3,7 +3,8 @@ import "./sidebar.scss";
 import { ROUTES } from "@/app/consts";
 import { useNavigate } from "react-router-dom";
 import { MdDashboard, MdAccessTime, MdList, MdGroup } from "react-icons/md";
-import { FaUserFriends, FaTelegram, FaTwitter } from "react-icons/fa";
+import { FaUserFriends, FaTelegram} from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { useAccount } from "@gear-js/react-hooks";
 import { useSailsCalls } from "@/app/hooks";
 
@@ -96,7 +97,7 @@ export function Sidebar() {
           Compartir
         </button>
         <button className="share-button twitter" onClick={handleTwitterShare}>
-          <FaTwitter className="icon" />
+          <FaXTwitter className="icon" />
           Tuitear
         </button>
       </div>

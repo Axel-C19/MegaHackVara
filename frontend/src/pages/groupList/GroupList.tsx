@@ -7,7 +7,6 @@ import { useSailsCalls } from "@/app/hooks";
 function GroupsViewer() {
   const [loading, setLoading] = useState(true);
   const [groups, setGroups] = useState([]);
-  const alert = useAlert();
   const { account } = useAccount();
   const sails = useSailsCalls();
 
@@ -31,7 +30,7 @@ function GroupsViewer() {
         setGroups(response.groups);
         setLoading(false);
       } catch (e) {
-        alert.error("Failed to fetch groups");
+        alert("Failed to fetch groups");
         setLoading(false);
         console.error(e);
       }
@@ -48,6 +47,7 @@ function GroupsViewer() {
       boxShadow="lg"
       maxW="600px"
       m="auto"
+      marginBlockStart={10}
     >
       <VStack spacing={4}>
         <Text
@@ -56,18 +56,25 @@ function GroupsViewer() {
           textAlign="center"
           color="teal.500"
         >
-          Blockchain Groups
+          Your Groups
         </Text>
         {loading ? (
           <Spinner size="xl" color="teal.500" />
         ) : groups.length ? (
           groups.map((group, index) => (
-            <Box key={index} p={4} bg="teal.100" borderRadius="md" width="100%">
-              <Text fontSize="lg" fontWeight="bold">
+            <Box
+              key={index}
+              p={4}
+              bg="#134D6B"
+              borderRadius="md"
+              width="100%"
+              cursor={"pointer"}
+            >
+              <Text fontSize="lg" fontWeight="bold" color="white">
                 Group ID: {group.id}
               </Text>
-              <Text>Members: {group.members.join(", ")}</Text>
-              <Text>Expenses: {group.expenses.length}</Text>
+              <Text color="white">Members: {group.members.join(", ")}</Text>
+              <Text color="white">Expenses: {group.expenses.length}</Text>
             </Box>
           ))
         ) : (

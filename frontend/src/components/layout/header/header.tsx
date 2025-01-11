@@ -1,21 +1,20 @@
-import { Logo } from './logo';
-import { Wallet } from '@gear-js/wallet-connect';
-import styles from './header.module.scss';
+import { Logo } from "./logo";
+import { Wallet } from "@gear-js/wallet-connect";
+import styles from "./header.module.scss";
 
 interface Props {
   isAccountVisible: boolean;
-};
+}
 
-let displayBalance = false;
+let displayBalance = true;
 
 export function Header({ isAccountVisible }: Props) {
   return (
     <header className={styles.header}>
       <Logo />
-      {isAccountVisible && <Wallet theme='vara' displayBalance={displayBalance}/>}
-      
+      {isAccountVisible && (
+        <Wallet theme="vara" displayBalance={displayBalance} />
+      )}
     </header>
   );
-
-  
 }

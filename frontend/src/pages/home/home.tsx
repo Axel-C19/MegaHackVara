@@ -2,104 +2,24 @@ import { useEffect, useState } from 'react';
 import { useContext } from 'react';
 import { dAppContext } from '@/Context/dappContext';
 import { Button } from '@gear-js/vara-ui';
-import { useAccount } from '@gear-js/react-hooks';
-import { 
-    NormalButtons,
-    VoucherButtons,
-    SignlessButtons,
-} from '@/components/ExampleComponents';
+import { useAccount, useBalance, useDeriveStakingAccount } from '@gear-js/react-hooks';
 import { useSailsCalls } from '@/app/hooks';
 import "./examples.css";
+import { useSafeLayoutEffect } from '@chakra-ui/react';
 
 
 function Home () {
-    const sails = useSailsCalls();
     const { account } = useAccount();
-    const { 
-        currentVoucherId,
-        setCurrentVoucherId,
-        setSignlessAccount
-    } = useContext(dAppContext);
+    const { balance } = useBalance(account?.address);
+    const sails = useSailsCalls();
 
-    const [pageSignlessMode, setPageSignlessMode] = useState(false);
-    const [voucherModeInPolkadotAccount, setVoucherModeInPolkadotAccount] = useState(false);
-    const [contractState, setContractState] = useState("");
-
-    useEffect(() => {
-        if (!account) {
-            setPageSignlessMode(true);
-        } else {
-            setPageSignlessMode(false);
-        }
-        if (setCurrentVoucherId) setCurrentVoucherId(null)
-    }, [account]);
+    const sendMessagWithMethod = async (method: string) =>{
+        console.log(balance?.toHuman())
+    }
 
     return (
-        <div className='examples-container'>
-            
-            <div className='examples'>
-                <div className='information'>
-                    <p>
-                        signless mode: { pageSignlessMode ? "Activated" : "disabled" }
-                    </p>
-                    <p>
-                        voucher active: { currentVoucherId ? "true" : "false" }
-                    </p>
-                    <p
-                        style={{
-                            maxWidth: "300px"
-                        }}
-                    >
-                        state: {contractState}
-                    </p>
-                </div>
-                <Button onClick={async () => {
-                    console.log("entro")
-                    if (!sails) {
-                        console.log('No esta lista el account o sails');
-                        return;
-                    }
-
-                    const response = await sails.query('0xb3809b8c18422c3a8fc6e3452b11234dea7cddbfd073c427f42e1ed08408cdb7/Service/Query');
-
-                    setContractState(JSON.stringify(response));
-
-                }}>
-                    Read State
-                </Button>
-                <Button onClick={() => {
-                    if (setCurrentVoucherId) setCurrentVoucherId(null);
-                    if (setSignlessAccount) setSignlessAccount(null);
-                    setPageSignlessMode(!pageSignlessMode);
-                }}>
-                    toggle signless mode
-                </Button>
-                {
-                    !pageSignlessMode && (
-                        <Button onClick={() => {
-                            setVoucherModeInPolkadotAccount(!voucherModeInPolkadotAccount);
-                        }}>
-                            toggle voucher mode
-                        </Button>
-                    )
-                }
-
-                {
-                    !pageSignlessMode && !voucherModeInPolkadotAccount && (
-                        <NormalButtons />
-                    )
-                }
-
-                {
-                    pageSignlessMode && <SignlessButtons />
-                }
-
-                {
-                    !pageSignlessMode && voucherModeInPolkadotAccount && (
-                        <VoucherButtons />
-                    )
-                }
-            </div>
+        <div>
+            <h1> En produccion... // Coming Soon...</h1>
         </div>
     );
 }

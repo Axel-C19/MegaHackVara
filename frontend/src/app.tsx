@@ -8,14 +8,18 @@ import { useInitSails } from "./app/hooks";
 import { CONTRACT_DATA, sponsorName, sponsorMnemonic } from "./app/consts";
 import { Sidebar } from "@/components/layout";
 import "@gear-js/vara-ui/dist/style.css";
-import { useLocation } from "react-router-dom"; // Import useLocation
-import "./app.scss"; // Ajusta la ruta al archivo SCSS
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import "./app.scss";
 
 function Component() {
   const { isApiReady } = useApi();
   const { isAccountReady, account } = useAccount();
   const { web3IsEnable } = useEnableWeb3();
   const isAppReady = isApiReady && isAccountReady && web3IsEnable;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
 
   // Initialize Sails
   useInitSails({
@@ -28,17 +32,24 @@ function Component() {
     },
   });
 
-  // Get current location
-  const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  // Efecto para manejar redirecciones basadas en el estado de la cuenta
+  useEffect(() => {
+    if (isAppReady) {
+      if (account && location.pathname === "/") {
+        navigate("/group-list");
+      } else if (!account && location.pathname !== "/") {
+        navigate("/");
+      }
+    }
+  }, [account, location.pathname, navigate, isAppReady]);
 
   return (
     <div className="app-container">
       <Header isAccountVisible={isAccountReady} />
       <div className="app-layout">
-        {!isHomePage && <Sidebar />}{" "}
+        {!isHomePage && <Sidebar />}
         <div style={{ flex: 1, width: "100%" }}>
-          {isAppReady ? <Routing /> : <ApiLoader />}
+          {isAppReady ? <Routing isAuthenticated={!!account} /> : <ApiLoader />}
         </div>
       </div>
     </div>

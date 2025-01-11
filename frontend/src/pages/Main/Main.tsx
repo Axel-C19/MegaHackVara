@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 
 function Main() {
   return (
-    <Center>
-      <VStack>
-        <Button textColor="black" bg="#00ffc4" as={Link} to="/home">
-          Examples
-        </Button>
-      </VStack>
-    </Center>
+    <h1> En produccion... // Coming Soon...</h1>
   );
 }
 

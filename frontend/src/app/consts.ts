@@ -32,7 +32,7 @@ export const sponsorMnemonic =
 
 export const CONTRACT_DATA: ContractSails = {
   programId:
-    "0x26cbb884b064112aadb4d93024d79f5818b98090cbbb660c65ff4e8071672d40",
+    "0x23fb2c14c54008e6f2419d5303742000693275c70eac20fe4c4189207575b0a4",
   idl: `type ExpenseDto = struct {
   description: str,
   amount: u128,
@@ -43,6 +43,7 @@ type Events = enum {
   GroupCreated: u32,
   UserJoined: struct { actor_id, u32 },
   ExpenseAdded: struct { u32, u32 },
+  PaymentAdded: struct { u32, u32 },
   Error: str,
 };
 
@@ -55,6 +56,7 @@ type Group = struct {
   name: str,
   members: vec actor_id,
   expenses: vec Expense,
+  payments: vec Payment,
 };
 
 type Expense = struct {
@@ -65,12 +67,20 @@ type Expense = struct {
   actor_id: actor_id,
 };
 
+type Payment = struct {
+  id: u32,
+  from: actor_id,
+  to: actor_id,
+  amount: u32,
+};
+
 constructor {
   New : ();
 };
 
 service Service {
   AddExpense : (group_id: u32, expenseDTO: ExpenseDto) -> Events;
+  AddPayment : (group_id: u32, amount: u32, to: actor_id) -> Events;
   CreateGroup : (group_name: str) -> Events;
   JoinGroup : (group_id: u32) -> Events;
   query Query : () -> IoState;

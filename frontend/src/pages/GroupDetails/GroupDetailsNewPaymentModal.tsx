@@ -71,13 +71,17 @@ const GroupDetailsNewPaymentModal = ({
             placeholder="Select Group Member"
             onChange={(e) => setActorId(e.target.value)}
           >
-            {group.members.map((member: any) => {
-              return (
-                <option key={member} value={member}>
-                  {member}
-                </option>
-              );
-            })}
+            {account &&
+              group.members.map((member: any) => {
+                if (member === account.decodedAddress) {
+                  return null;
+                }
+                return (
+                  <option key={member} value={member}>
+                    {member}
+                  </option>
+                );
+              })}
           </Select>
           <InputGroup my={4}>
             <InputLeftElement pointerEvents="none">

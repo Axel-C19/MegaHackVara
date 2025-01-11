@@ -15,6 +15,7 @@ import { AiOutlineProduct } from "react-icons/ai";
 import { useAccount } from "@gear-js/react-hooks";
 import { useSailsCalls } from "@/app/hooks";
 import GroupDetailsNewExpenseModal from "./GroupDetailsNewExpenseModal";
+import GroupDetailsNewPaymentModal from "./GroupDetailsNewPaymentModal";
 
 function GroupDetails() {
   const { groupId } = useParams();
@@ -23,6 +24,7 @@ function GroupDetails() {
   const { account } = useAccount();
   const sails = useSailsCalls();
   const GroupDetailsNewExpenseDisclosure = useDisclosure();
+  const GroupDetailsNewPaymentDisclosure = useDisclosure();
 
   const fetchGroupsDetails = async () => {
     if (!sails || !account) {
@@ -80,7 +82,12 @@ function GroupDetails() {
         <Divider marginY={6} />
         <VStack justify={"start"} alignItems={"start"}>
           <HStack>
-            <Button size="sm" colorScheme="orange" shadow={"lg"}>
+            <Button
+              size="sm"
+              colorScheme="orange"
+              shadow={"lg"}
+              onClick={GroupDetailsNewPaymentDisclosure.onOpen}
+            >
               Settle Up
             </Button>
             <Button
@@ -110,6 +117,14 @@ function GroupDetails() {
           isOpen={GroupDetailsNewExpenseDisclosure.isOpen}
           onClose={() => {
             GroupDetailsNewExpenseDisclosure.onClose();
+            fetchGroupsDetails();
+          }}
+        />
+        <GroupDetailsNewPaymentModal
+          group={group}
+          isOpen={GroupDetailsNewPaymentDisclosure.isOpen}
+          onClose={() => {
+            GroupDetailsNewPaymentDisclosure.onClose();
             fetchGroupsDetails();
           }}
         />

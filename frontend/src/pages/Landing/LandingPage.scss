@@ -1,0 +1,125 @@
+// Variables
+$primary-blue: #4A90E2;
+$primary-green: #4BD5B1;
+$background-color: #1a1f36;
+$text-color: #ffffff;
+
+// Mixins
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin container-width {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+// Main Styles
+.landing-page {
+  height: 100vh; // Cambiado de min-height a height
+  background-color: $background-color;
+  display: flex;
+  align-items: flex-start; // Cambiado de center a flex-start
+  padding-top: 30vh; // Añadido para mover el contenido hacia arriba
+  overflow: hidden; // Previene el scroll
+}
+
+.landing-container {
+  @include container-width;
+  width: 100%;
+}
+
+// Main Content Styles
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: flex-start; // Cambiado de center a flex-start
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+// Brand Section Styles
+.brand-section {
+  .brand-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+    color: $text-color;
+    cursor: pointer;
+
+    .brand-underline {
+      border-bottom: 2px solid $primary-blue;
+    }
+  }
+
+  .brand-description {
+    font-size: 1.25rem;
+    color: $text-color;
+    line-height: 1.5;
+
+    .highlight-text {
+      display: block;
+      color: $primary-green;
+      margin-top: 0.5rem;
+    }
+  }
+}
+
+// Features Section Styles
+.features-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.feature-item {
+  p {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  .feature-text {
+    color: $text-color;
+  }
+
+  .project-tag {
+    color: $primary-green;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+}
+
+// Responsive Styles
+@media (max-width: 768px) {
+  .landing-container {
+    padding: 0 1rem;
+  }
+
+  .brand-section {
+    .brand-title {
+      font-size: 2rem;
+    }
+
+    .brand-description {
+      font-size: 1.125rem;
+    }
+  }
+
+  .feature-item p {
+    font-size: 1rem;
+  }
+}
+
+// Añadido para prevenir scroll en el body
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}

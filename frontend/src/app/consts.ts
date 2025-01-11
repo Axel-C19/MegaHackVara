@@ -15,9 +15,9 @@ export const ADDRESS = {
 
 export const ROUTES = {
   LANDING: "/",
-  HOME: '/home',
-  EXPENSES: '/expenses',
-  GROUPLIST: '/group-list',
+  HOME: "/home",
+  EXPENSES: "/expenses",
+  GROUPLIST: "/group-list",
   MAIN: "/Main",
   EXAMPLES: "/examples",
   NOTFOUND: "*",
@@ -32,7 +32,7 @@ export const sponsorMnemonic =
 
 export const CONTRACT_DATA: ContractSails = {
   programId:
-    "0xd10af574d622dcd8e4a2fe6d54497a57974b5f9960dcce34de83916695546a50",
+    "0x26cbb884b064112aadb4d93024d79f5818b98090cbbb660c65ff4e8071672d40",
   idl: `type ExpenseDto = struct {
   description: str,
   amount: u128,
@@ -52,6 +52,7 @@ type IoState = struct {
 
 type Group = struct {
   id: u32,
+  name: str,
   members: vec actor_id,
   expenses: vec Expense,
 };
@@ -70,7 +71,7 @@ constructor {
 
 service Service {
   AddExpense : (group_id: u32, expenseDTO: ExpenseDto) -> Events;
-  CreateGroup : () -> Events;
+  CreateGroup : (group_name: str) -> Events;
   JoinGroup : (group_id: u32) -> Events;
   query Query : () -> IoState;
   query QueryActorGroups : () -> vec Group;

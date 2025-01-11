@@ -17,6 +17,7 @@ import { FaDoorOpen } from "react-icons/fa6";
 import { web3FromSource } from "@polkadot/extension-dapp";
 import GroupListJoinGroupModal from "./GroupListJoinGroupModal";
 import { getgroups } from "process";
+import GroupListCreateGroupModal from "./GroupListCreateGroupModal";
 
 function GroupsViewer() {
   const [loading, setLoading] = useState(true);
@@ -25,6 +26,7 @@ function GroupsViewer() {
   const sails = useSailsCalls();
 
   const GroupListJoinGroupModalDisclosure = useDisclosure();
+  const GroupListCreateGroupModalDisclosure = useDisclosure();
 
   const fetchGroups = async () => {
     if (!sails || !account) {
@@ -48,26 +50,6 @@ function GroupsViewer() {
   useEffect(() => {
     fetchGroups();
   }, [account, sails]);
-
-  const createNewGroup = async () => {
-    if (!sails || !account) {
-      alert("Sails or account not ready");
-      return;
-    }
-
-    try {
-      const { signer } = await web3FromSource(account.meta.source);
-      const response = await sails.command("Service/CreateGroup", {
-        userAddress: account.decodedAddress,
-        signer,
-      });
-
-      fetchGroups();
-    } catch (e) {
-      alert("Failed to create group");
-      console.error(e);
-    }
-  };
 
   return (
     <Box
@@ -103,7 +85,7 @@ function GroupsViewer() {
             colorScheme="teal"
             leftIcon={<IoMdAdd />}
             onClick={() => {
-              createNewGroup();
+              GroupListCreateGroupModalDisclosure.onOpen();
             }}
           >
             New Group
@@ -145,6 +127,13 @@ function GroupsViewer() {
         onClose={() => {
           fetchGroups();
           GroupListJoinGroupModalDisclosure.onClose();
+        }}
+      />
+      <GroupListCreateGroupModal
+        isOpen={GroupListCreateGroupModalDisclosure.isOpen}
+        onClose={() => {
+          fetchGroups();
+          GroupListCreateGroupModalDisclosure.onClose();
         }}
       />
     </Box>

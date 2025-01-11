@@ -1,11 +1,10 @@
 import { Link } from 'react-router-dom';
-import './logo.module.scss';
-import logoImage from './Logo.png'; // Asegúrate de que la ruta sea correcta
+import styles from './logo.module.scss';
 
 function Logo() {
   return (
-    <Link to="/">
-      <h1>Logo</h1>
+    <Link to="/" className={styles.link}>
+      <img src="./Logo.png" alt="Logo" className={styles.logo} />
     </Link>
   );
 }

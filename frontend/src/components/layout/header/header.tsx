@@ -6,11 +6,13 @@ interface Props {
   isAccountVisible: boolean;
 };
 
+let displayBalance = false;
+
 export function Header({ isAccountVisible }: Props) {
   return (
     <header className={styles.header}>
       <Logo />
-      {isAccountVisible && <Wallet theme='vara'/>}
+      {isAccountVisible && <Wallet theme='vara' displayBalance={displayBalance}/>}
       
     </header>
   );

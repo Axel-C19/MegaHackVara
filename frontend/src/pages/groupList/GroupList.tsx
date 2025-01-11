@@ -18,16 +18,11 @@ function GroupsViewer() {
 
       try {
         setLoading(true);
-        const response = await sails.query(
-          "Service/Query", // Adjust this command as needed
-          {
-            userAddress: account.decodedAddress,
-          }
-        );
+        const response = await sails.query("Service/QueryActorGroups", {
+          userId: account.decodedAddress,
+        });
 
-        console.log(response);
-
-        setGroups(response.groups);
+        setGroups(response);
         setLoading(false);
       } catch (e) {
         alert("Failed to fetch groups");

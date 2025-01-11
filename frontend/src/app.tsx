@@ -9,8 +9,7 @@ import { CONTRACT_DATA, sponsorName, sponsorMnemonic } from "./app/consts";
 import { Sidebar } from "@/components/layout";
 import "@gear-js/vara-ui/dist/style.css";
 import { useLocation } from "react-router-dom"; // Import useLocation
-import './app.scss'; // Ajusta la ruta al archivo SCSS
-
+import "./app.scss"; // Ajusta la ruta al archivo SCSS
 
 function Component() {
   const { isApiReady } = useApi();
@@ -20,7 +19,7 @@ function Component() {
 
   // Initialize Sails
   useInitSails({
-    network: 'wss://testnet.vara.network',
+    network: "wss://testnet.vara.network",
     contractId: CONTRACT_DATA.programId,
     idl: CONTRACT_DATA.idl,
     vouchersSigner: {
@@ -37,8 +36,9 @@ function Component() {
     <div className="app-container">
       <Header isAccountVisible={isAccountReady} />
       <div className="app-layout">
-        {!isHomePage && <Sidebar />} {/* Sidebar siempre visible si no es "/" */}
-        <div className="main-content">
+        {!isHomePage && <Sidebar />}{" "}
+        {/* Sidebar siempre visible si no es "/" */}
+        <div style={{ flex: 1, width: "100%", overflowY: "scroll" }}>
           {isAppReady ? <Routing /> : <ApiLoader />}
         </div>
       </div>

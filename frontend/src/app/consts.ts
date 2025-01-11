@@ -29,7 +29,7 @@ export const sponsorMnemonic =
 
 export const CONTRACT_DATA: ContractSails = {
   programId:
-    "0x808ebbaf76d0d1af1b41eeb4f83f255fc716f44994637d0f77ec99f567d4f5ae",
+    "0xd10af574d622dcd8e4a2fe6d54497a57974b5f9960dcce34de83916695546a50",
   idl: `type ExpenseDto = struct {
   description: str,
   amount: u128,

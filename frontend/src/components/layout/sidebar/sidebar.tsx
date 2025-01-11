@@ -17,6 +17,9 @@ export function Sidebar() {
   const handleTwitterShare = () => {
     window.open("https://x.com/chain_split?s=11", "_blank");
   };
+  const handleTelegramShare = () => {
+    window.open("https://web.telegram.org/", "_blank");
+  };
 
   const fetchGroups = async () => {
     if (!sails || !account) {
@@ -59,7 +62,7 @@ export function Sidebar() {
 
       {/* Sección de Grupos */}
       <div className="groups-section">
-        <div className="section-title">
+        <div className="section-title" onClick={() => navigate(ROUTES.GROUPLIST)}>
           <h3>GRUPOS</h3>
         </div>
 
@@ -85,8 +88,8 @@ export function Sidebar() {
 
       {/* Sección de Invitación */}
       <div className="invite-section">
-        <button className="share-button facebook">
-          <FaTelegram className="icon" />
+        <button className="share-button facebook" onClick={handleTelegramShare}>
+          <FaTelegram className="icon" /> 
           Compartir
         </button>
         <button className="share-button twitter" onClick={handleTwitterShare}>

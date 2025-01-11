@@ -51,10 +51,17 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: #134d6b;
-  height: 60px; /* Fija la altura del header */
+  height: 60px;
+  transition: background-color 0.3s ease-in-out; /* Para animar la transición de color */
 }
 
+.homeHeader {
+  background-color: #ffffff; /* Color del header en la ruta "/" */
+}
+
+.defaultHeader {
+  background-color: #134d6b; /* Color del header en cualquier otra ruta */
+}
 .nav {
   flex-grow: 1;
 }

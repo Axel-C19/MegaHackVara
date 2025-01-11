@@ -30,7 +30,7 @@ const GroupDetailsNewExpenseModal = ({
   isOpen,
   onClose,
 }: {
-  groupId: string;
+  groupId: any;
   isOpen: boolean;
   onClose: () => void;
 }) => {

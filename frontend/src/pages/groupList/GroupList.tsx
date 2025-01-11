@@ -23,7 +23,7 @@ import GroupListCreateGroupModal from "./GroupListCreateGroupModal";
 
 function GroupsViewer() {
   const [loading, setLoading] = useState(true);
-  const [groups, setGroups] = useState([]);
+  const [groups, setGroups] = useState<any[]>([]);
   const { account } = useAccount();
   const sails = useSailsCalls();
 
@@ -137,7 +137,7 @@ function GroupsViewer() {
                     <Text color="white">Expenses: {group.expenses.length}</Text>
                   </HStack>
                   <VStack spacing={2}>
-                    {group.members.map((m) => {
+                    {group.members.map((m: any) => {
                       return (
                         <HStack>
                           <Avatar size="xs" name={m} />

@@ -66,8 +66,8 @@ function GroupDetails() {
   return (
     <>
       <Box bg="#F7A278" w="100%" h="130px"></Box>
-      <Box padding={"20px"}>
-        <VStack justify={"start"} alignItems={"start"}>
+      <Box padding={"10px"}>
+        <VStack justify={"start"} alignItems={"start"} spacing={0}>
           <Text as="b" fontSize="60px">
             {group.name}
           </Text>
@@ -80,29 +80,37 @@ function GroupDetails() {
             </Text>
           </HStack>
         </VStack>
-        <Divider marginY={6} />
-        <VStack justify={"start"} alignItems={"start"}>
-          <HStack>
-            <Button
-              size="sm"
-              colorScheme="orange"
-              shadow={"lg"}
-              onClick={GroupDetailsNewPaymentDisclosure.onOpen}
-            >
-              Settle Up
-            </Button>
-            <Button
-              size="sm"
-              colorScheme="red"
-              shadow="lg"
-              onClick={GroupDetailsNewExpenseDisclosure.onOpen}
-            >
-              Add Expense
-            </Button>
-            <Button size="sm" shadow="lg">
-              Totals
-            </Button>
-          </HStack>
+        <Divider marginY={2} />
+        <HStack>
+          <Button
+            size="sm"
+            colorScheme="orange"
+            shadow={"lg"}
+            onClick={GroupDetailsNewPaymentDisclosure.onOpen}
+          >
+            Settle Up
+          </Button>
+          <Button
+            size="sm"
+            colorScheme="red"
+            shadow="lg"
+            onClick={GroupDetailsNewExpenseDisclosure.onOpen}
+          >
+            Add Expense
+          </Button>
+          <Button size="sm" shadow="lg">
+            Totals
+          </Button>
+        </HStack>
+        <VStack
+          my="6"
+          justify={"start"}
+          alignItems={"start"}
+          style={{
+            overflowY: "scroll",
+            height: "calc(100vh - 400px)",
+          }}
+        >
           <VStack mt="6" w="100%">
             {group &&
               group.payments.map((payment: any) => {

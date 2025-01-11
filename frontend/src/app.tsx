@@ -38,7 +38,7 @@ function Component() {
       <div className="app-layout">
         {!isHomePage && <Sidebar />}{" "}
         {/* Sidebar siempre visible si no es "/" */}
-        <div style={{ flex: 1, width: "100%", overflowY: "scroll" }}>
+        <div style={{ flex: 1, width: "100%" }}>
           {isAppReady ? <Routing /> : <ApiLoader />}
         </div>
       </div>

@@ -62,13 +62,16 @@ export function Sidebar() {
 
       {/* Sección de Grupos */}
       <div className="groups-section">
-        <div className="section-title" onClick={() => navigate(ROUTES.GROUPLIST)}>
+        <div
+          className="section-title"
+          onClick={() => navigate(ROUTES.GROUPLIST)}
+        >
           <h3>GRUPOS</h3>
         </div>
 
         <div className="groups-list">
           {groups.length > 0 ? (
-            groups.map((group, index) => (
+            groups.map((group: any, index) => (
               <div
                 key={index}
                 className="sidebar-item group-item"
@@ -89,7 +92,7 @@ export function Sidebar() {
       {/* Sección de Invitación */}
       <div className="invite-section">
         <button className="share-button facebook" onClick={handleTelegramShare}>
-          <FaTelegram className="icon" /> 
+          <FaTelegram className="icon" />
           Compartir
         </button>
         <button className="share-button twitter" onClick={handleTwitterShare}>

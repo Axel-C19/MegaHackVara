@@ -11,6 +11,7 @@ import {
   Center,
   useDisclosure,
   Avatar,
+  Flex,
 } from "@chakra-ui/react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { MdOutlinePayments } from "react-icons/md";
@@ -18,6 +19,11 @@ import { useAccount } from "@gear-js/react-hooks";
 import { useSailsCalls } from "@/app/hooks";
 import GroupDetailsNewExpenseModal from "./GroupDetailsNewExpenseModal";
 import GroupDetailsNewPaymentModal from "./GroupDetailsNewPaymentModal";
+import {
+  getTotalOwedFromGroup,
+  getTotalOwedFromGroupToEachUser,
+} from "./GroupDetails.Utils";
+import { set } from "react-hook-form";
 
 function GroupDetails() {
   const { groupId } = useParams();
@@ -27,6 +33,8 @@ function GroupDetails() {
   const sails = useSailsCalls();
   const GroupDetailsNewExpenseDisclosure = useDisclosure();
   const GroupDetailsNewPaymentDisclosure = useDisclosure();
+  const [totalOwed, setTotalOwed] = useState([0, 0]);
+  const [totalOwedToEachUser, setTotalOwedToEachUser] = useState<any>({});
 
   const fetchGroupsDetails = async () => {
     if (!sails || !account) {
@@ -56,6 +64,17 @@ function GroupDetails() {
     fetchGroupsDetails();
   }, [groupId, sails, account]);
 
+  useEffect(() => {
+    if (account) {
+      setTotalOwed(getTotalOwedFromGroup(group, account.decodedAddress));
+      const cosa = getTotalOwedFromGroupToEachUser(
+        group,
+        account.decodedAddress
+      );
+      setTotalOwedToEachUser(cosa);
+    }
+  }, [group]);
+
   if (!group) {
     return (
       <Center>
@@ -68,7 +87,7 @@ function GroupDetails() {
     <>
       <Box bg="#F7A278" w="100%" h="130px"></Box>
       <Box padding={"10px"}>
-        <HStack>
+        <HStack spacing={10}>
           <VStack justify={"start"} alignItems={"start"} spacing={0}>
             <Text as="b" fontSize="60px">
               {group.name}
@@ -77,21 +96,34 @@ function GroupDetails() {
               Group Id: {group.id}
             </Text>
             <HStack>
-              <Text fontSize={"17px"} color="orange" as="b">
-                You owe $103.67 overall
+              <Text fontSize={"17px"} color="orange.300" as="b">
+                You owe ${totalOwed[1].toFixed(2)} overall
               </Text>
-              <Text fontSize={"17px"} color="green" as="b">
-                You are owed $13.67 overall
+              <Text fontSize={"17px"} color="green.400" as="b">
+                You are owed overall ${totalOwed[0].toFixed(2)}
               </Text>
             </HStack>
           </VStack>
-          <VStack justify={"start"} alignItems={"start"} spacing={0}>
+          <VStack spacing={0} justify={"center"} alignItems={"start"}>
             {group.members.map((m: any) => {
+              if (account && m === account.decodedAddress) {
+                return;
+              }
               return (
-                <HStack spacing={0}>
+                <HStack spacing={3} alignItems={"center"}>
                   <Avatar size="2xs" name={m} />
                   <Text color="black">
-                    {m.slice(0, 5) + "..." + m.slice(m.length - 5, m.length)}
+                    {totalOwedToEachUser[m] > 0
+                      ? `you owe ${
+                          m.slice(0, 5) +
+                          "..." +
+                          m.slice(m.length - 5, m.length)
+                        } $${totalOwedToEachUser[m]}`
+                      : `${
+                          m.slice(0, 5) +
+                          "..." +
+                          m.slice(m.length - 5, m.length)
+                        } owes you $${Math.abs(totalOwedToEachUser[m])}`}
                   </Text>
                 </HStack>
               );

@@ -12,6 +12,7 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { AiOutlineProduct } from "react-icons/ai";
+import { MdOutlinePayments } from "react-icons/md";
 import { useAccount } from "@gear-js/react-hooks";
 import { useSailsCalls } from "@/app/hooks";
 import GroupDetailsNewExpenseModal from "./GroupDetailsNewExpenseModal";
@@ -103,6 +104,12 @@ function GroupDetails() {
             </Button>
           </HStack>
           <VStack mt="6" w="100%">
+            {group &&
+              group.payments.map((payment: any) => {
+                return <PaymentRow payment={payment} />;
+              })}
+          </VStack>
+          <VStack mt="6" w="100%">
             {group && group.expenses.length === 0 && (
               <Text>No Expenses Yet</Text>
             )}
@@ -132,6 +139,31 @@ function GroupDetails() {
     </>
   );
 }
+
+const PaymentRow = ({ payment }: any) => {
+  return (
+    <HStack
+      w="100%"
+      p={4}
+      bg=""
+      borderRadius="md"
+      boxShadow="xs"
+      alignItems={"center"}
+    >
+      <VStack alignItems={"center"} spacing={0}>
+        <Text>Sep</Text>
+        <Text>28</Text>
+      </VStack>
+      <Text fontSize={"50px"} mx="10px" color="green">
+        <MdOutlinePayments />
+      </Text>
+      <Text>
+        {payment.from.slice(0, 5)}... paid {payment.to.slice(0, 5)}... $
+        {payment.amount}
+      </Text>
+    </HStack>
+  );
+};
 
 const ExpenseRow = ({ expense }: any) => {
   return (

@@ -10,6 +10,7 @@ import {
   Button,
   Center,
   useDisclosure,
+  Avatar,
 } from "@chakra-ui/react";
 import { AiOutlineProduct } from "react-icons/ai";
 import { MdOutlinePayments } from "react-icons/md";
@@ -67,19 +68,36 @@ function GroupDetails() {
     <>
       <Box bg="#F7A278" w="100%" h="130px"></Box>
       <Box padding={"10px"}>
-        <VStack justify={"start"} alignItems={"start"} spacing={0}>
-          <Text as="b" fontSize="60px">
-            {group.name}
-          </Text>
-          <HStack>
-            <Text fontSize={"17px"} color="orange" as="b">
-              You owe $103.67 overall
+        <HStack>
+          <VStack justify={"start"} alignItems={"start"} spacing={0}>
+            <Text as="b" fontSize="60px">
+              {group.name}
             </Text>
-            <Text fontSize={"17px"} color="green" as="b">
-              You are owed $13.67 overall
+            <Text as="b" mt={-4}>
+              Group Id: {group.id}
             </Text>
-          </HStack>
-        </VStack>
+            <HStack>
+              <Text fontSize={"17px"} color="orange" as="b">
+                You owe $103.67 overall
+              </Text>
+              <Text fontSize={"17px"} color="green" as="b">
+                You are owed $13.67 overall
+              </Text>
+            </HStack>
+          </VStack>
+          <VStack justify={"start"} alignItems={"start"} spacing={0}>
+            {group.members.map((m: any) => {
+              return (
+                <HStack spacing={0}>
+                  <Avatar size="2xs" name={m} />
+                  <Text color="black">
+                    {m.slice(0, 5) + "..." + m.slice(m.length - 5, m.length)}
+                  </Text>
+                </HStack>
+              );
+            })}
+          </VStack>
+        </HStack>
         <Divider marginY={2} />
         <HStack>
           <Button

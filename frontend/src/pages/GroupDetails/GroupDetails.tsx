@@ -5,21 +5,14 @@ import {
   VStack,
   Text,
   Spinner,
-  Alert,
-  AlertIcon,
   HStack,
   Divider,
   Button,
-  CircularProgress,
   Center,
-  Stack,
 } from "@chakra-ui/react";
 import { AiOutlineProduct } from "react-icons/ai";
-import { useAlert } from "@gear-js/react-hooks";
 import { useAccount } from "@gear-js/react-hooks";
 import { useSailsCalls } from "@/app/hooks";
-import { group } from "console";
-import { web3FromSource } from "@polkadot/extension-dapp";
 
 function GroupDetails() {
   const { groupId } = useParams();

@@ -62,7 +62,6 @@ function GroupsViewer() {
       maxW="600px"
       m="auto"
       marginBlockStart={10}
-      overflowY={"scroll"}
     >
       <VStack spacing={4}>
         <HStack justify={"space-between"} width="100%">
@@ -93,7 +92,7 @@ function GroupsViewer() {
             New Group
           </Button>
         </HStack>
-        <VStack spacing={4} width="100%" overflowY={"scroll"}>
+        <VStack spacing={4} width="100%" height="70vh" overflowY={"scroll"}>
           {loading ? (
             <Spinner size="xl" color="teal.500" />
           ) : groups.length ? (

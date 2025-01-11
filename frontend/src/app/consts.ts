@@ -14,7 +14,10 @@ export const ADDRESS = {
 };
 
 export const ROUTES = {
-  HOME: "/",
+  LANDING: "/",
+  HOME: '/home',
+  EXPENSES: '/expenses',
+  GROUPLIST: '/group-list',
   MAIN: "/Main",
   EXAMPLES: "/examples",
   NOTFOUND: "*",

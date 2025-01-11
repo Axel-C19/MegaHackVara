@@ -8,10 +8,11 @@
 //   }
 // }
 
-// .logo {
-//   width: 100%;
-//   height: 100%;
-// }
+.logo {
+  height: auto; /* El logo ocupará el 100% de la altura del header */
+  width: auto; /* El ancho se ajustará automáticamente según su altura */
+  object-fit: contain; /* Asegura que mantenga su proporción original */
+}
 
 .metaliccard {
   background-color: #aeb1b0;

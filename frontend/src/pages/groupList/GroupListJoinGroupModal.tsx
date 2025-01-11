@@ -80,7 +80,7 @@ const GroupListJoinGroupModal = ({
               joinGroup();
             }}
           >
-            Create Group
+            Join Group
           </Button>
         </ModalFooter>
       </ModalContent>

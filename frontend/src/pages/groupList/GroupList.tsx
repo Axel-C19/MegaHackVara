@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import {
   Box,
+  Image,
   VStack,
   Text,
   Spinner,
@@ -9,6 +10,7 @@ import {
   HStack,
   Button,
   useDisclosure,
+  Avatar,
 } from "@chakra-ui/react";
 import { IoMdAdd } from "react-icons/io";
 import { useAccount } from "@gear-js/react-hooks";
@@ -96,23 +98,60 @@ function GroupsViewer() {
             <Spinner size="xl" color="teal.500" />
           ) : groups.length ? (
             groups.map((group, index) => (
-              <Box
+              <HStack
                 key={index}
                 p={4}
                 bg="#134D6B"
                 borderRadius="md"
                 width="100%"
                 cursor={"pointer"}
+                height="150px"
                 onClick={() => {
                   window.location.href = `/group-details/${group.id}`;
                 }}
               >
-                <Text fontSize="lg" fontWeight="bold" color="white">
-                  {group.name}
-                </Text>
-                <Text color="white">Members: {group.members.join(", ")}</Text>
-                <Text color="white">Expenses: {group.expenses.length}</Text>
-              </Box>
+                <Image
+                  // boxSize="100%"
+                  height={"100%"}
+                  width={"150px"}
+                  src="https://static.vecteezy.com/system/resources/thumbnails/012/508/173/small_2x/paradise-island-beach-tropical-landscape-of-summer-scenic-sea-sand-sky-with-palm-trees-luxury-travel-vacation-destination-exotic-beach-landscape-amazing-nature-relax-freedom-nature-template-photo.jpg"
+                  alt="Dan Abramov"
+                />
+                <VStack
+                  align="start"
+                  height="100%"
+                  width={"100%"}
+                  style={{
+                    justifyContent: "space-between",
+                  }}
+                >
+                  <HStack width="100%" justify="space-between">
+                    <Text
+                      fontSize="20px"
+                      as="b"
+                      fontWeight="bold"
+                      color="white"
+                    >
+                      {group.name}
+                    </Text>
+                    <Text color="white">Expenses: {group.expenses.length}</Text>
+                  </HStack>
+                  <VStack spacing={2}>
+                    {group.members.map((m) => {
+                      return (
+                        <HStack>
+                          <Avatar size="xs" name={m} />
+                          <Text color="white">
+                            {m.slice(0, 5) +
+                              "..." +
+                              m.slice(m.length - 5, m.length)}
+                          </Text>
+                        </HStack>
+                      );
+                    })}
+                  </VStack>
+                </VStack>
+              </HStack>
             ))
           ) : (
             <Alert status="info">
